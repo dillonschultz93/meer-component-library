@@ -1,0 +1,19 @@
+{
+  "name": "schultz-wc",
+  "version": "1.0.0",
+  "description": "A web component library",
+  "main": "index.js",
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dillonschultz93/web-component-library.git"
+  },
+  "author": "Dillon Schultz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dillonschultz93/web-component-library/issues"
+  },
+  "homepage": "https://github.com/dillonschultz93/web-component-library#readme"
+}
