@@ -2,8 +2,8 @@ jobs:
   lint:
     executor: node/default
     steps:
-      -checkout
-      -run: npm run lint
+      - checkout
+      - run: npm run lint
   test:
     executor: node/default
     steps:
