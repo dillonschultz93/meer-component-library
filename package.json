@@ -4,7 +4,20 @@
   "description": "A web component library",
   "main": "index.js",
   "scripts": {
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "format": "npm run format:eslint && npm run format:prettier",
+    "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",
+    "format:eslint": "eslint --ext .js,.html . --fix --ignore-path .gitignore",
+    "lint:prettier": "prettier \"**/*.js\" --check --ignore-path .gitignore",
+    "format:prettier": "prettier \"**/*.js\" --write --ignore-path .gitignore",
     "test": ""
+  },
+  "eslintConfig": {
+    "extends": ["@open-wc/eslint-config"]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "avoid"
   },
   "repository": {
     "type": "git",
@@ -15,5 +28,11 @@
   "bugs": {
     "url": "https://github.com/dillonschultz93/web-component-library/issues"
   },
-  "homepage": "https://github.com/dillonschultz93/web-component-library#readme"
+  "homepage": "https://github.com/dillonschultz93/web-component-library#readme",
+  "devDependencies": {
+    "@open-wc/eslint-config": "^4.0.1",
+    "eslint": "^7.14.0",
+    "eslint-config-prettier": "^6.15.0",
+    "prettier": "^2.2.1"
+  }
 }
