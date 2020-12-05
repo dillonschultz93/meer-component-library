@@ -1,46 +1,57 @@
 {
-  "name": "schultz-wc",
+  "name": "meer",
   "version": "1.0.0",
   "description": "A web component library",
   "main": "index.js",
   "scripts": {
-    "lint": "npm run lint:eslint && npm run lint:prettier",
-    "format": "npm run format:eslint && npm run format:prettier",
+    "lint": "npm run lint:eslint",
+    "format": "npm run format:eslint",
     "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",
     "format:eslint": "eslint --ext .js,.html . --fix --ignore-path .gitignore",
-    "lint:prettier": "prettier \"**/*.js\" --check --ignore-path .gitignore",
-    "format:prettier": "prettier \"**/*.js\" --write --ignore-path .gitignore",
-    "postinstall": "husky install",
+    "_postinstall": "husky install",
     "prepublish": "pinst --disable",
     "postpublish": "pinst --enable",
-    "test": ""
+    "test": "web-test-runner --coverage",
+    "test:watch": "web-test-runner --watch",
+    "storybook": "start-storybook",
+    "storybook:build": "build-storybook",
+    "build": "rimraf dist && rollup -c rollup.config.js",
+    "start:build": "npm run build && web-dev-server --root-dir dist --app-index index.html --open --compatibility none",
+    "generate": "node ./util/generate-component.js"
   },
   "eslintConfig": {
     "extends": [
       "@open-wc/eslint-config"
     ]
   },
-  "prettier": {
-    "singleQuote": true,
-    "arrowParens": "avoid"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dillonschultz93/web-component-library.git"
+    "url": "git+https://github.com/dillonschultz93/meer-component-library.git"
   },
-  "private":"false",
+  "private": "false",
   "author": "Dillon Schultz",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dillonschultz93/web-component-library/issues"
+    "url": "https://github.com/dillonschultz93/meer-component-library/issues"
   },
-  "homepage": "https://github.com/dillonschultz93/web-component-library#readme",
+  "homepage": "https://github.com/dillonschultz93/meer-component-library#readme",
   "devDependencies": {
+    "@open-wc/building-rollup": "^1.0.0",
+    "@open-wc/demoing-storybook": "^2.0.0",
     "@open-wc/eslint-config": "^4.0.1",
+    "@open-wc/testing": "^2.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.0",
+    "@web/test-runner": "^0.7.41",
+    "deepmerge": "^4.2.2",
     "eslint": "^7.14.0",
-    "eslint-config-prettier": "^6.15.0",
     "husky": "^5.0.4",
     "pinst": "^2.1.1",
-    "prettier": "^2.2.1"
+    "rimraf": "^2.6.3",
+    "rollup": "^2.3.4",
+    "rollup-plugin-multi-input": "^1.1.1"
+  },
+  "dependencies": {
+    "colors": "^1.4.0",
+    "lit-element": "^2.4.0"
   }
 }
