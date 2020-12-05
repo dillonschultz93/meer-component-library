@@ -16,7 +16,7 @@ jobs:
           override-ci-command: npm install
       - run: npm run test
 orbs:
-  node: circleci/node@3.0.0
+  node: circleci/node@4.1.0
 version: 2.1
 workflows:
   lint:
