@@ -36,7 +36,7 @@ window.customElements.define('meer-button', Button);
 ```
 
 ```js preview-story
-export const Primary = () => html`
-  <meer-button></meer-button>
+export const Default = () => html`
+  <meer-button>Default</meer-button>
 `;
 ```
