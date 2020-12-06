@@ -57,6 +57,7 @@ export default css`
   --color-danger-2: rgba(255,80,68,1);
   --color-danger-3: rgba(230,72,61,1);
   --color-danger-4: rgba(202,63,53,1);
+  --color-danger-5: rgba(167,52,44,1);
 
   --color-info-0: rgba(150,196,255,1);
   --color-info-1: rgba(114,175,255,1);
@@ -120,8 +121,8 @@ export default css`
   /* # Misc. */
 
   /* ## Drop Shadows */
-  --drop-shadow-initial: 0rem 0.25rem 0.5rem rgba(var(--color-grey-9), 0.2);
-  --drop-shadow-hover: 0rem 0.375rem 1rem rgba(var(--color-grey-9), 0.2);
-  --drop-shadow-active: 0rem 0.25rem 0.5rem rgba(var(--color-grey-9), 0.2);
+  --drop-shadow-initial: 0rem 0.25rem 0.5rem rgba(57, 63, 71, 0.2);
+  --drop-shadow-hover: 0rem 0.375rem 1rem rgba(57, 63, 71, 0.2);
+  --drop-shadow-active: 0rem 0.25rem 0.5rem rgba(57, 63, 71, 0.2);
 }
 `;
