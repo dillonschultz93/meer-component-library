@@ -7,7 +7,7 @@ export class Button extends LitElement {
       baseStyles,
       css`
       button {
-        color: red;
+        display: inline-block;
       }
     `,
     ];
