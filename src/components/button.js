@@ -1,12 +1,16 @@
 import { html, css, LitElement } from 'lit-element';
+import baseStyles from '../styles/component-base-styles.js';
 
 export class Button extends LitElement {
   static get styles() {
-    return css`
-      :host {
-        display: block;
+    return [
+      baseStyles,
+      css`
+      button {
+        color: red;
       }
-    `;
+    `,
+    ];
   }
 
   static get properties() {
@@ -21,6 +25,6 @@ export class Button extends LitElement {
   }
 
   render() {
-    return html` <button .type=${this.type}>Button</button> `;
+    return html`<button .type=${this.type}>Button</button>`;
   }
 }
