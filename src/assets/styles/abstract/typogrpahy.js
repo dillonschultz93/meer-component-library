@@ -1,7 +1,7 @@
 import { css } from 'lit-element';
 
 export default css`
-  * {
+  :host {
     font-family: var(--font);
     color: var(--color-grey-9);
     font-weight: var(--font-weight-regular);
