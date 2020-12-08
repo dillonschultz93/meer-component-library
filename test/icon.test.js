@@ -39,14 +39,14 @@ describe('Icon', () => {
     expect(assertion.length).to.equal(1);
   });
 
-  it('should render an svg with a default size of 18px if no size value is passed', async () => {
+  it('should render an svg with a default size of 16px if no size value is passed', async () => {
     await fixture(html`<meer-icon name="heart-outline"></meer-icon>`);
 
     const component = document.querySelector('meer-icon');
     const assertion = component.shadowRoot.querySelector('svg');
 
-    expect(assertion.clientWidth).to.equal(18);
-    expect(assertion.clientHeight).to.equal(18);
+    expect(assertion.clientWidth).to.equal(16);
+    expect(assertion.clientHeight).to.equal(16);
   });
 
   it('should render an svg with a size of 24px', async () => {

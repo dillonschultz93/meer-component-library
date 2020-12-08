@@ -9,7 +9,7 @@ export class Icon extends LitElement {
       baseStyles,
       css`
       :host {
-        display: inline-block;
+        display: inline-flex;
       }
 
       svg {
@@ -58,7 +58,7 @@ export class Icon extends LitElement {
   constructor() {
     super();
     this.color = 9;
-    this.size = 18;
+    this.size = 16;
   }
 
   render() {

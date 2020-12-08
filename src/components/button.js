@@ -24,6 +24,7 @@ export class Button extends LitElement {
         margin: var(--spacing-outset-0);
         box-sizing: border-box;
         box-shadow: var(--drop-shadow-initial);
+        height: 2.5rem;
       }
 
       button slot {
@@ -45,11 +46,16 @@ export class Button extends LitElement {
         margin: var(--spacing-outset-0);
         box-sizing: border-box;
         box-shadow: var(--drop-shadow-initial);
+        height: 2.5rem;
       }
 
       a slot {
         font-weight: var(--font-weight-semi-bold);
         text-decoration: none;
+      }
+
+      meer-icon {
+        margin-left: var(--spacing-outset-0);
       }
 
       .default {
@@ -208,6 +214,7 @@ export class Button extends LitElement {
       type: { type: String },
       disabled: { type: Boolean },
       href: { type: String },
+      icon: { type: String },
     };
   }
 
@@ -220,6 +227,12 @@ export class Button extends LitElement {
     if (this.href) {
       return html`<a class=${this.type} href=${this.href} target="_blank" rel="noreferrer noopener" ?disabled=${this.disabled}><slot></slot></a>`;
     }
-    return html`<button class=${this.type} ?disabled=${this.disabled}><slot></slot></button>`;
+    return html`
+    <button class=${this.type} ?disabled=${this.disabled}>
+      <slot></slot>
+      ${this.icon
+    ? html`<meer-icon name=${this.icon} color=${this.type === 'danger' || this.type === 'primary' ? 0 : 9}></meer-icon>` : null}
+    </button>
+    `;
   }
 }
