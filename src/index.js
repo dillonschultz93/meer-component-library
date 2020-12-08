@@ -1,3 +1,4 @@
 import { Button } from './components/button.js';
+import { Icon } from './components/icon.js';
 
-export { Button };
+export { Button, Icon };
