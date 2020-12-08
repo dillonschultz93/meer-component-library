@@ -81,4 +81,22 @@ describe('Button', () => {
 
     expect(slotContent).to.equal('Button');
   });
+
+  it('should append an icon component with a black fill if the icon property is set with a valid icon name', async () => {
+    await fixture(html`<meer-button icon="checkmark">Button</meer-button>`);
+
+    const button = document.querySelector('meer-button');
+    const slotContent = button.shadowRoot.children[0].children[1];
+
+    expect(slotContent.tagName).to.equal('MEER-ICON');
+  });
+
+  it('should append an icon component with a white fill if the icon property is set with a valid icon name', async () => {
+    await fixture(html`<meer-button type="primary" icon="checkmark">Button</meer-button>`);
+
+    const button = document.querySelector('meer-button');
+    const slotContent = button.shadowRoot.children[0].children[1];
+
+    expect(slotContent.tagName).to.equal('MEER-ICON');
+  });
 });

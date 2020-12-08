@@ -1,8 +1,6 @@
 ```js script
 import { html } from '@open-wc/demoing-storybook';
-import { Button } from '../src/components/button.js';
-
-window.customElements.define('meer-button', Button);
+import { Button } from '../src/index.js';
 
 export default {
   title: 'Button',
@@ -25,12 +23,16 @@ First, install the `meer` package.
 npm install meer
 ```
 
-Then, import the componet from `meer` and define a custom element.
+Then, import the `meer` package and call the `<meer-button></meer-button>` element.
 
-```js
-import { Button } from 'meer';
+```html
+<body>
+  <script type="module">
+    import 'meer';
+  </script>
 
-window.customElements.define('meer-button', Button);
+  <meer-button></meer-button>
+</body>
 ```
 
 ## Style
@@ -94,6 +96,16 @@ To have the button behave like an anchor element pass a url string to the `href`
 ```js preview-story
 export const Link = () => html`
   <meer-button type="ghost" href="https://dillonschultz.design">Link</meer-button>
+`;
+```
+
+## With icon
+
+To have the button behave like an anchor element pass a url string to the `href` property.
+
+```js preview-story
+export const WithIcon = () => html`
+  <meer-button type="primary" icon="checkmark">Submit</meer-button>
 `;
 ```
 

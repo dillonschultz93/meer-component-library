@@ -1,9 +1,7 @@
 ```js script
 import { html } from '@open-wc/demoing-storybook';
-import { Icon } from '../src/components/icon.js';
+import { Icon } from '../src/index.js';
 import { iconDefs } from '../src/assets/icons/icon-def.js';
-
-window.customElements.define('meer-icon', Icon);
 
 export default {
   title: 'Icon',
@@ -26,12 +24,16 @@ First, install the `meer` package.
 npm install meer
 ```
 
-Then, import the componet from `meer` and define a custom element.
+Then, import the `meer` package and call the `<meer-icon></meer-icon>` element.
 
-```js
-import { Icon } from 'meer';
+```html
+<body>
+  <script type="module">
+    import 'meer';
+  </script>
 
-window.customElements.define('meer-icon', Icon);
+  <meer-icon></meer-icon>
+</body>
 ```
 
 ## Name
