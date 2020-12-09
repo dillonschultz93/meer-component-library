@@ -101,7 +101,7 @@ export const Link = () => html`
 
 ## With icon
 
-To have the button behave like an anchor element pass a url string to the `href` property.
+To have the button append an icon to the end of the text content simply pass a valid icon name to the `icon` property.
 
 ```js preview-story
 export const WithIcon = () => html`
