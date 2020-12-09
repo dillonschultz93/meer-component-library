@@ -12,7 +12,7 @@
     "prepublish": "pinst --disable",
     "postpublish": "pinst --enable",
     "test": "web-test-runner test/**/*.test.js --node-resolve --playwright --browsers chromium firefox webkit --coverage",
-    "test:watch": "web-test-runner test/**/*.test.js --node-resolve --playwright --browsers chromium firefox webkit --watch",
+    "test:watch": "web-test-runner test/**/*.test.js --node-resolve --playwright --browsers chromium firefox webkit --watch --coverage",
     "storybook": "start-storybook",
     "storybook:build": "build-storybook",
     "build": "rimraf dist && rollup -c rollup.config.js",
