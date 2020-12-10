@@ -1,6 +1,6 @@
 import { Button } from './components/button.js';
 import { Icon } from './components/icon.js';
-import { TextInput } from './components/textInput.js';
+import { TextInput } from './components/text-input.js';
 
 export { Button, Icon, TextInput };
 

@@ -1,7 +1,5 @@
 import { html, fixture, expect } from '@open-wc/testing';
-import { TextInput } from '../src/components/textInput.js';
-
-window.customElements.define('meer-text-input', TextInput);
+import '../src/index.js';
 
 describe('TextInput', () => {
   it('Exists', async () => {

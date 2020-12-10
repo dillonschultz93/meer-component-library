@@ -47,6 +47,7 @@ export class TextInput extends LitElement {
       .textbox {
         outline: none;
         font-family: var(--font);
+        font-size: var(--font-size-small);
         padding: var(--spacing-inset-0);
         border: 1px solid var(--color-grey-7);
         border-radius: var(--spacing-corner-1);

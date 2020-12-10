@@ -1,6 +1,6 @@
 ```js script
 import { html } from '@open-wc/demoing-storybook';
-import { TextInput } from '../src/index.js';
+import '../src/index.js';
 
 export default {
   title: 'TextInput',
