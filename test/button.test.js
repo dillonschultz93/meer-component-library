@@ -1,7 +1,5 @@
 import { html, fixture, expect } from '@open-wc/testing';
-import { Button } from '../src/components/button.js';
-
-window.customElements.define('meer-button', Button);
+import '../src/index.js';
 
 describe('Button', () => {
   it('Exists', async () => {

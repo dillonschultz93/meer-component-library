@@ -1,7 +1,5 @@
 import { html, fixture, expect } from '@open-wc/testing';
-import { Icon } from '../src/components/icon.js';
-
-window.customElements.define('meer-icon', Icon);
+import '../src/index.js';
 
 describe('Icon', () => {
   it('Exists', async () => {
