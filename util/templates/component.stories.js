@@ -1,48 +1,43 @@
+/* eslint-disable import/no-extraneous-dependencies */
+const changeCase = require('change-case');
+
 module.exports = componentName => ({
   location: 'stories/',
   content: `\`\`\`js script
 import { html } from '@open-wc/demoing-storybook';
-import { ${
-  componentName.charAt(0).toUpperCase() + componentName.slice(1)
-  } } from '../src/components/${componentName}.js';
-
-window.customElements.define('meer-${componentName}', ${
-    componentName.charAt(0).toUpperCase() + componentName.slice(1)
-  });
+import '../src/index.js';
 
 export default {
-  title: '${componentName.charAt(0).toUpperCase() + componentName.slice(1)}',
+  title: '${changeCase.pascalCase(componentName)}',
   component: 'meer-${componentName}',
   options: { selectedPanel: "storybookjs/knobs/panel" },
 };
 \`\`\`
 
-# Component Name
+# ${changeCase.capitalCase(componentName)}
 
 Lorem Ipsum
-
-## Features
-
-- a
-- b
-- c
 
 ## How to use
 
 ### Installation
 
+First, install the \`meer\` package.
+
 \`\`\`bash
 npm install meer
 \`\`\`
 
-\`\`\`js
-import { ${
-  componentName.charAt(0).toUpperCase() + componentName.slice(1)
-  } } 'meer';
+Then, import the \`meer\` package and call the \`<meer-${componentName}></meer-${componentName}>\` element.
 
-window.customElements.define('meer-${componentName}', ${
-    componentName.charAt(0).toUpperCase() + componentName.slice(1)
-  });
+\`\`\`html
+<body>
+  <script>
+    import 'meer';
+  </script>
+
+  <meer-${componentName}></meer-${componentName}>
+</body>
 \`\`\`
 
 \`\`\`js preview-story
@@ -50,6 +45,8 @@ export const Default = () => html\`
   <meer-${componentName}></meer-${componentName}>
 \`;
 \`\`\`
+
+## Property Definitions
 `,
   extension: '.stories.md',
 });

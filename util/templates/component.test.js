@@ -1,17 +1,12 @@
+/* eslint-disable import/no-extraneous-dependencies */
+const changeCase = require('change-case');
+
 module.exports = componentName => ({
   location: 'test/',
   content: `import { html, fixture, expect } from '@open-wc/testing';
-import { ${
-  componentName.charAt(0).toUpperCase() + componentName.slice(1)
-  } } from '../src/components/${componentName}.js';
+import '../src/index.js';
 
-window.customElements.define('meer-${componentName}', ${
-    componentName.charAt(0).toUpperCase() + componentName.slice(1)
-  });
-
-describe('${
-  componentName.charAt(0).toUpperCase() + componentName.slice(1)
-  }', () => {
+describe('${changeCase.pascalCase(componentName)}', () => {
   it('Exists', async () => {
     const component = await fixture(html\`
       <meer-${componentName}></meer-${componentName}>

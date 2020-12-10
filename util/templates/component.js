@@ -1,16 +1,17 @@
+/* eslint-disable import/no-extraneous-dependencies */
+const changeCase = require('change-case');
+
 module.exports = componentName => ({
   location: 'src/components/',
   content: `import { html, css, LitElement } from 'lit-element';
-import baseStyles from '../styles/component-base-styles.js';
+import baseStyles from '../assets/styles/component-base-styles.js';
 
-export class ${
-  componentName.charAt(0).toUpperCase() + componentName.slice(1)
-  } extends LitElement {
+export class ${changeCase.pascalCase(componentName)} extends LitElement {
  static get styles() {
     return [
       baseStyles,
       css\`
-      div {
+      :host {
         display: block;
       }
     \`,
@@ -25,7 +26,7 @@ export class ${
 
   render() {
     return html\`
-      <div>${componentName}</div>
+      <div>${changeCase.paramCase(componentName)}</div>
     \`;
   }
 }

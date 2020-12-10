@@ -1,9 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-console */
 require('colors');
 const fs = require('fs');
+const changeCase = require('change-case');
 const templates = require('./templates/index.js');
 
-const componentName = process.argv[2];
+const componentName = changeCase.paramCase(process.argv[2]);
 
 if (!componentName) {
   console.error('Please supply a component name'.red);
