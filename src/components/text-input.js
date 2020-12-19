@@ -82,15 +82,15 @@ export class TextInput extends LitElement {
       }
 
       .error {
-        border-color: var(--color-danger-3);
+        border-color: var(--color-danger-3) !important;
       }
 
       .warning {
-        border-color: var(--color-warning-3);
+        border-color: var(--color-warning-3) !important;
       }
 
       .success {
-        border-color: var(--color-success-3);
+        border-color: var(--color-success-3) !important;
       }
 
       meer-icon {
