@@ -84,7 +84,7 @@ export const WithIcon = () => html`
 `;
 ```
 
-## Prop Definitions
+## Property Definitions
 
 | Name           | Type      | Value(s)                              | Optional |
 |----------------|-----------|---------------------------------------|----------|

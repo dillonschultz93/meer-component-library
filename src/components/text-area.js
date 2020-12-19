@@ -1,7 +1,7 @@
 import { html, css, LitElement } from 'lit-element';
 import baseStyles from '../assets/styles/component-base-styles.js';
 
-export class TextInput extends LitElement {
+export class TextArea extends LitElement {
   static get styles() {
     return [
       baseStyles,
@@ -55,11 +55,7 @@ export class TextInput extends LitElement {
         transition: all 150ms ease-in-out;
         background: var(--color-grey-0);
       }
-
-      .with-icon {
-        padding: var(--spacing-inset-0) var(--spacing-inset-0) var(--spacing-inset-0) var(--spacing-inset-3);
-      }
-
+      
       .textbox:active,
       .textbox:focus,
       .textbox:hover {
@@ -89,14 +85,14 @@ export class TextInput extends LitElement {
         border-color: var(--color-warning-3) !important;
       }
 
-      .success {
-        border-color: var(--color-success-3) !important;
+      .error:active,
+      .error:focus {
+        box-shadow: 0 0 0 2px var(--color-danger-0) !important;
       }
 
-      meer-icon {
-        position: absolute;
-        top: 36px;
-        left: var(--spacing-outset-0);
+      .warning:active,
+      .warning:focus {
+        box-shadow: 0 0 0 2px var(--color-warning-0) !important;
       }
 
       .validation-message {
@@ -105,8 +101,8 @@ export class TextInput extends LitElement {
         line-height: 1.2rem;
         margin: 0;
         padding: var(--spacing-inset-0) 0;
-        width: 75%;
         height: var(--spacing-outset-3);
+        text-align: right;
       }
 
       .validation-message--error {
@@ -122,23 +118,17 @@ export class TextInput extends LitElement {
 
   static get properties() {
     return {
-      width: { type: Number },
       id: { type: String },
       name: { type: String },
       placeholder: { type: String },
-      disabled: { type: Boolean },
+      width: { type: Number },
+      rows: { type: Number },
       required: { type: Boolean },
-      validation: { type: Boolean },
+      disabled: { type: Boolean },
+      limitChar: { type: Boolean },
+      charLimit: { type: Number },
+      resize: { type: String },
       value: { type: String },
-      errorMessage: {
-        type: String,
-        hasChanged(newVal, oldVal) {
-          if (newVal !== oldVal) {
-            return true;
-          }
-          return false;
-        },
-      },
       errorType: {
         type: String,
         hasChanged(newVal, oldVal) {
@@ -148,12 +138,34 @@ export class TextInput extends LitElement {
           return false;
         },
       },
-      icon: { type: String },
     };
   }
 
-  onChangeHandler() {
+  onChangeHandler(e) {
+    e.preventDefault();
+
     this.value = this.inputElement.value;
+
+    if (this.limitChar) {
+      const percentageLeft = this.value.length / this.charLimit;
+      parseFloat(percentageLeft.toFixed(2));
+
+      if (percentageLeft >= 0.9) {
+        this.errorType = 'error';
+      } else if (percentageLeft <= 0.9 && percentageLeft > 0.69) {
+        this.errorType = 'warning';
+      } else {
+        this.errorType = undefined;
+      }
+
+      this.requestUpdate();
+    }
+  }
+
+  characterLimitHandler() {
+    const currentValueLength = this.value.length;
+
+    return this.charLimit - currentValueLength;
   }
 
   get inputElement() {
@@ -163,6 +175,8 @@ export class TextInput extends LitElement {
   constructor() {
     super();
     this.width = 100;
+    this.placeholder = '';
+    this.rows = 4;
     this.value = '';
   }
 
@@ -172,16 +186,21 @@ export class TextInput extends LitElement {
         <label class=${`label ${this.disabled ? 'disabled' : ''}`} for=${this.id}>
           <slot></slot>${this.required ? html`<span class="required">*</span>` : ''}
         </label>
-        <input 
-          class=${`textbox ${(this.required && this.errorType !== undefined) || (this.validation && this.errorType !== undefined) ? this.errorType : ''} ${this.icon !== undefined ? 'with-icon' : ''}`} 
-          id=${this.id} name=${this.name} 
-          type="text" 
-          placeholder=${this.placeholder} 
-          @input=${this.onChangeHandler} 
+        <textarea
+          class=${`textbox ${(this.required && this.errorType !== undefined) || (this.limitChar && this.errorType !== undefined) ? this.errorType : ''}`} 
+          style=${this.resize ? `resize: ${this.resize};` : 'resize: both;'}
+          id=${this.id}
+          name=${this.name}
+          placeholder=${this.placeholder}
+          rows=${this.rows}
+          maxlength=${this.limitChar && this.charLimit ? this.charLimit : ''}
+          ?disabled=${this.disabled}
           .value=${this.value} 
-          ?disabled=${this.disabled} />
-        ${this.icon ? html`<meer-icon name=${this.icon}></meer-icon>` : ''}
-        <span class=${`validation-message ${this.required || this.validation ? `validation-message--${this.errorType}` : ''}`}>${this.required || this.validation ? this.errorMessage : ''}</span>
+          @input=${e => this.onChangeHandler(e)}>
+        </textarea>
+        <span class=${`validation-message ${this.limitChar && !this.disabled ? `validation-message--${this.errorType}` : ''}`}>
+          ${this.limitChar && !this.disabled ? `${this.characterLimitHandler()} Characters Remaining` : ''}
+        </span>
       </div>
     `;
   }
