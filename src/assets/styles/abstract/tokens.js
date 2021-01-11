@@ -115,6 +115,7 @@ export default css`
   --spacing-inset-9: 5rem;
 
   /* ## Corner Radius */
+  --spacing-corner-0: 0.125rem;
   --spacing-corner-1: 0.25rem;
   --spacing-corner-2: 0.5rem; 
 

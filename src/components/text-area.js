@@ -62,8 +62,8 @@ export class TextArea extends LitElement {
         border-color: var(--color-indigo-5);
       }
 
-      .textbox:active,
-      .textbox:focus {
+      .textbox:active:not(:disabled),
+      .textbox:focus:not(:disabled) {
         box-shadow: 0 0 0 2px var(--color-indigo-2);
       }
 
@@ -160,6 +160,8 @@ export class TextArea extends LitElement {
 
       this.requestUpdate();
     }
+
+    this.dispatchEvent(new CustomEvent('change', { bubbles: true, composed: true, detail: this.value }));
   }
 
   characterLimitHandler() {

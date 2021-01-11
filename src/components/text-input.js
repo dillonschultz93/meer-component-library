@@ -66,8 +66,8 @@ export class TextInput extends LitElement {
         border-color: var(--color-indigo-5);
       }
 
-      .textbox:active,
-      .textbox:focus {
+      .textbox:active:not(:disabled),
+      .textbox:focus:not(:disabled) {
         box-shadow: 0 0 0 2px var(--color-indigo-2);
       }
 
@@ -154,6 +154,7 @@ export class TextInput extends LitElement {
 
   onChangeHandler() {
     this.value = this.inputElement.value;
+    this.dispatchEvent(new CustomEvent('change', { bubbles: true, composed: true, detail: this.value }));
   }
 
   get inputElement() {
@@ -174,7 +175,8 @@ export class TextInput extends LitElement {
         </label>
         <input 
           class=${`textbox ${(this.required && this.errorType !== undefined) || (this.validation && this.errorType !== undefined) ? this.errorType : ''} ${this.icon !== undefined ? 'with-icon' : ''}`} 
-          id=${this.id} name=${this.name} 
+          id=${this.id} 
+          name=${this.name} 
           type="text" 
           placeholder=${this.placeholder} 
           @input=${this.onChangeHandler} 

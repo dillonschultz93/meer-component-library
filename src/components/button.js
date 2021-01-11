@@ -21,7 +21,6 @@ export class Button extends LitElement {
         border-radius: var(--spacing-corner-1);
         padding: var(--spacing-inset-0) var(--spacing-inset-1);
         transition: all 150ms ease-in-out;
-        margin: var(--spacing-outset-0);
         box-sizing: border-box;
         box-shadow: var(--drop-shadow-initial);
         height: 2.5rem;
@@ -223,12 +222,16 @@ export class Button extends LitElement {
     this.type = 'default';
   }
 
+  onClickHandler() {
+    this.dispatchEvent(new CustomEvent('click', { bubbles: true, composed: true }));
+  }
+
   render() {
     if (this.href) {
       return html`<a class=${this.type} href=${this.href} target="_blank" rel="noreferrer noopener" ?disabled=${this.disabled}><slot></slot></a>`;
     }
     return html`
-    <button class=${this.type} ?disabled=${this.disabled}>
+    <button class=${this.type} ?disabled=${this.disabled} @click=${this.onClickHandler}>
       <slot></slot>
       ${this.icon
     ? html`<meer-icon name=${this.icon} color=${this.type === 'danger' || this.type === 'primary' ? 0 : 9}></meer-icon>` : null}
